@@ -1,13 +1,20 @@
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginBox from './components/LoginBox';
-import './App.css';
+import RegisterBox from './components/RegisterBox';
+import axios from 'axios';
 
-//componente principal do app react
 function App() {
-  return ( 
-    <div className = "App">
-      <LoginBox/>
-    </div>);
-
+  return (
+    <Router>
+      <Routes>
+        <Route path="/login" element={<LoginBox />} />
+        <Route path="/register" element={<RegisterBox />} />
+        {/* <Route path="/home" element={<HomeBox />} /> */}
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
