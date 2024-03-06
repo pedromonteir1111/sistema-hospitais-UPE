@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const { log } = require('console');
 const { PassThrough } = require('stream');
 const port = 4000; 
+const path = require('path');
 
 app.use(cors()); // para permitir solicitações de qualquer origem
 app.use(bodyParser.json());
@@ -109,6 +110,17 @@ app.post('/api/enviar-dados/home', (req, res) => {
 
 
 
+app.post('/api/enviar-dados/upload', (req, res) => {
+  const file = req.body.file;
+  const fileName = req.body.fileName;
+  
+  const filePath = path.join(__dirname, 'ArquivosEnviados.json');
+  const fileData = { fileName, file };
+  const jsonData = JSON.stringify(fileData);
+  fs.appendFileSync(filePath, jsonData + '\n');
+  res.send('Arquivo enviado com sucesso e registrado no servidor!');
+
+});
 
 
 
