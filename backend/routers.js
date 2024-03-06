@@ -12,8 +12,8 @@ app.use(cors()); // para permitir solicitações de qualquer origem
 app.use(bodyParser.json());
 
 app.post('/api/enviar-dados/registrar', (req, res) => {
-    const novoPaciente = req.body;
-    console.log('Dados recebidos do frontend:', novoPaciente);
+    const novoUsuario = req.body;
+    console.log('Dados recebidos do frontend:', novoUsuario);
 
     var resposta;
     fs.readFile(bancodedados, 'utf8', (err, dadosAtuais) => {
@@ -22,10 +22,10 @@ app.post('/api/enviar-dados/registrar', (req, res) => {
           return;
         }
         const Dados_antigos = JSON.parse(dadosAtuais)
-        const PacienteExistente = Dados_antigos.pacientes.find(pacientes => pacientes.email === novoPaciente.email) || Dados_antigos.pacientes.find(pacientes => pacientes.login === novoPaciente.login) ;
+        const UsuarioExistente = Dados_antigos.usuarios.find(usuarios => usuarios.email === novoUsuario.email) || Dados_antigos.usuarios.find(usuarios => usuarios.login === novoUsuario.login) ;
 
-        if (PacienteExistente) {
-            if(novoPaciente.email == "" || novoPaciente.cpf == "" || novoPaciente.login == "" || novoPaciente.date == "" || novoPaciente.senha == ""){
+        if (UsuarioExistente) {
+            if(novoUsuario.email == "" || novoUsuario.cpf == "" || novoUsuario.login == "" || novoUsuario.date == "" || novoUsuario.senha == ""){
                 resposta = { mensagem: 'Verifique se está faltando alguma informação' };
                 console.log('Verifique se está faltando alguma informação');
                 res.json(resposta);
@@ -39,7 +39,7 @@ app.post('/api/enviar-dados/registrar', (req, res) => {
           } 
           
           else {
-            Dados_antigos.pacientes.push(novoPaciente);
+            Dados_antigos.usuarios.push(novoUsuario);
             resposta = { mensagem: 'Dados recebidos com sucesso!' };
             res.json(resposta);
         }
@@ -72,9 +72,9 @@ fs.readFile(bancodedados, 'utf8', (err, dadosAtuais) => {
         return;
     }
     const Dados_antigos = JSON.parse(dadosAtuais)
-    const PacienteExistente = Dados_antigos.pacientes.find(pacientes => pacientes.senha === Login.senha) && Dados_antigos.pacientes.find(pacientes => pacientes.login === Login.login) ;
+    const UsuarioExistente = Dados_antigos.usuarios.find(usuarios => usuarios.senha === Login.senha) && Dados_antigos.usuarios.find(usuarios => usuarios.login === Login.login) ;
 
-    if (PacienteExistente) {
+    if (UsuarioExistente) {
         if(Login.login == "" || Login.senha == ""){
             resposta = { mensagem: 'Verifique se está faltando alguma informação' };
             console.log('Verifique se está faltando alguma informação');
@@ -104,7 +104,8 @@ fs.readFile(bancodedados, 'utf8', (err, dadosAtuais) => {
 })
 
 
-
+app.post('/api/enviar-dados/home', (req, res) => {
+})
 
 
 

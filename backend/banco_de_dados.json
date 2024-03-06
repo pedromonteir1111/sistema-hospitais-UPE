@@ -1,5 +1,5 @@
 {
-  "pacientes": [
+  "usuarios": [
     {},
     {
       "email": "12312312@gmail.com",
@@ -21,7 +21,31 @@
       "cpf": "",
       "date": "",
       "senha": ""
+    },
+    {
+      "email": "edward@gmaill.com",
+      "login": "edward123",
+      "cpf": "123456",
+      "date": "2004-04-02",
+      "senha": "pasteldecana",
+      "nome": "Edward"
+    },
+    {
+      "email": "joaozinho@daasd",
+      "login": "123123123123123",
+      "cpf": "12312312312312312",
+      "date": "2024-03-12",
+      "senha": "4124124124124",
+      "nome": "jasdjajsdajsd"
+    },
+    {
+      "email": "jskadjasdkj@daskjd",
+      "login": "123123123123",
+      "cpf": "123123123123",
+      "date": "2024-02-26",
+      "senha": "1231231231312",
+      "nome": "1231231231",
+      "medico": false
     }
-    
   ]
 }
