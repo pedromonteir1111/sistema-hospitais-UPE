@@ -14,6 +14,7 @@ function RegisterBox() {
   const [email, setEmail] = useState('');
   const [login, setLogin] = useState('');
   const [nome, setNome] = useState('');
+  // const [medico, setMedico] = useState('');
 
   const enviarDadosParaBackend = async (e) => {
     e.preventDefault(); 
@@ -27,6 +28,7 @@ function RegisterBox() {
         date: data,
         senha: senha,
         nome: nome,
+        medico: false,
       });
       setRespostaDoBackend(resposta.data);
     } catch (erro) {
