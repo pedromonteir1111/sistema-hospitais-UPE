@@ -120,3 +120,15 @@ html, body{
     background: #050046;
     display: inline-block;
 }
+
+.textbox2{
+    width: 100%;
+}
+
+.titulo2{
+    font-size: 35px;
+    line-height: 40px;
+    font-weight: 600;
+    margin: 170px 80px 20px 330px;
+}
+
