@@ -28,7 +28,8 @@
       "cpf": "123456",
       "date": "2004-04-02",
       "senha": "pasteldecana",
-      "nome": "Edward"
+      "nome": "Edward",
+      "medico": false
     },
     {
       "email": "joaozinho@daasd",
@@ -45,6 +46,42 @@
       "date": "2024-02-26",
       "senha": "1231231231312",
       "nome": "1231231231",
+      "medico": false
+    },
+    {
+      "email": "emai_de_teste@gmail.com",
+      "login": "joao123",
+      "cpf": "123456",
+      "date": "2024-02-19",
+      "senha": "senha123",
+      "nome": "João da Silva",
+      "medico": false
+    },
+    {
+      "email": "teste@123",
+      "login": "123123123",
+      "cpf": "123123123",
+      "date": "2024-03-10",
+      "senha": "12312312312",
+      "nome": "2312312",
+      "medico": false
+    },
+    {
+      "email": "12312312332@wsdas",
+      "login": "123123123123123123123",
+      "cpf": "12312312312312312123",
+      "date": "2024-03-05",
+      "senha": "123123123123123123123123123",
+      "nome": "1231231231232312312312",
+      "medico": false
+    },
+    {
+      "email": "asdas@asd",
+      "login": "asdkjajsdkasj",
+      "cpf": "12312312313123123123",
+      "date": "2024-02-26",
+      "senha": "123123123123123",
+      "nome": "asdjkasjdjkas",
       "medico": false
     }
   ]

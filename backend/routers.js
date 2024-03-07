@@ -7,16 +7,24 @@ const bodyParser = require('body-parser');
 const { log } = require('console');
 const { PassThrough } = require('stream');
 const port = 4000; 
-const path = require('path');
+
+
+var nome;
+var nome_inicial;
+var UsuarioExistente = false;
+var resposta_de_login;
+var resposta_de_registro;
+var resposta_de_user;
 
 app.use(cors()); // para permitir solicitações de qualquer origem
 app.use(bodyParser.json());
 
 app.post('/api/enviar-dados/registrar', (req, res) => {
     const novoUsuario = req.body;
+    nome = ""
     console.log('Dados recebidos do frontend:', novoUsuario);
 
-    var resposta;
+    resposta_de_registro;
     fs.readFile(bancodedados, 'utf8', (err, dadosAtuais) => {
         if (err) {
           console.error('Erro ao ler o banco de dados', err);
@@ -27,22 +35,22 @@ app.post('/api/enviar-dados/registrar', (req, res) => {
 
         if (UsuarioExistente) {
             if(novoUsuario.email == "" || novoUsuario.cpf == "" || novoUsuario.login == "" || novoUsuario.date == "" || novoUsuario.senha == ""){
-                resposta = { mensagem: 'Verifique se está faltando alguma informação' };
+                resposta_de_registro = { mensagem: 'Verifique se está faltando alguma informação' };
                 console.log('Verifique se está faltando alguma informação');
-                res.json(resposta);
+                res.json(resposta_de_registro);
             }
             else{
-                resposta = { mensagem: 'Usuário já cadastrado' };
+                resposta_de_registro = { mensagem: 'Usuário já cadastrado' };
                 console.log('Usuário já cadastrado');
-                res.json(resposta);
+                res.json(resposta_de_registro);
             }
 
           } 
           
           else {
             Dados_antigos.usuarios.push(novoUsuario);
-            resposta = { mensagem: 'Dados recebidos com sucesso!' };
-            res.json(resposta);
+            resposta_de_registro = { mensagem: 'Dados recebidos com sucesso!' };
+            res.json(resposta_de_registro);
         }
 
         const banco_atualizado = JSON.stringify(Dados_antigos, null, 2);
@@ -65,47 +73,100 @@ app.post('/api/enviar-dados/registrar', (req, res) => {
 
 app.post('/api/enviar-dados/logar', (req, res) => {
 
-const Login = req.body;
+  const Login = req.body;
+  var medico;
 
-fs.readFile(bancodedados, 'utf8', (err, dadosAtuais) => {
-    if (err) {
-        console.error('Erro ao ler o banco de dados', err);
-        return;
-    }
-    const Dados_antigos = JSON.parse(dadosAtuais)
-    const UsuarioExistente = Dados_antigos.usuarios.find(usuarios => usuarios.senha === Login.senha) && Dados_antigos.usuarios.find(usuarios => usuarios.login === Login.login) ;
+  fs.readFile(bancodedados, 'utf8', (err, dadosAtuais) => {
+      if (err) {
+          console.error('Erro ao ler o banco de dados', err);
+          return;
+      }
+      const Dados_antigos = JSON.parse(dadosAtuais)
+      // const UsuarioExistente = Dados_antigos.usuarios.find(usuarios => usuarios.senha === Login.senha) && Dados_antigos.usuarios.find(usuarios => usuarios.login === Login.login) ;
+      
+      for(let indice_dos_dados in Dados_antigos.usuarios){
+        if(Dados_antigos.usuarios[indice_dos_dados].senha == Login.senha && Dados_antigos.usuarios[indice_dos_dados].login == Login.login){
+          UsuarioExistente = true;
+          nome = Dados_antigos.usuarios[indice_dos_dados].nome;
+          medico = Dados_antigos.usuarios[indice_dos_dados].medico;
+          console.log(Dados_antigos.usuarios[indice_dos_dados])
+          console.log(nome)
+          try{
+            nome_inicial = nome.split(" ")[0];
+          }
+          catch{
 
-    if (UsuarioExistente) {
-        if(Login.login == "" || Login.senha == ""){
-            resposta = { mensagem: 'Verifique se está faltando alguma informação' };
-            console.log('Verifique se está faltando alguma informação');
-            res.json(resposta);
+          }
         }
-        else{
-            resposta = { mensagem: 'Login realizado' };
-            console.log('Login realizado');
-            res.json(resposta);
-        }
 
-        } 
-        
-        else {
-        resposta = { mensagem: 'Conta não cadastrada!' };
-        res.json(resposta);
-    }
+      }
 
-    
-    
-    
+      if (UsuarioExistente) {
+          if(Login.login == "" || Login.senha == ""){
+              resposta_de_login = { mensagem: 'Verifique se está faltando alguma informação' };
+              console.log('Verifique se está faltando alguma informação');
+              res.json(resposta_de_login);
+          }
+          else{
+            if(medico == false){
+              resposta_de_login = { mensagem: 'Login realizado' };
+              console.log('Login realizado');
+              res.json(resposta_de_login);
+            }
+              
+          }
+
+          } 
+          
+          else {
+          resposta_de_login = { mensagem: 'Conta não cadastrada!' };
+          res.json(resposta_de_login);
+      }
+
+      
+      
+      
 
 
-});
+  });
 
 
 })
 
 
-app.post('/api/enviar-dados/home', (req, res) => {
+app.post('/api/enviar-dados/user', (req, res) => {
+  const requisicao = req.body;
+  
+  if(resposta_de_login.mensagem == 'Login realizado'){
+    
+    if(requisicao.mensagem == 'Quero saber o usuário'){
+      resposta_de_user = {nome: nome_inicial, mensagem: 'Login feito' };
+      console.log(`O usuário ${nome} fez login`);
+      res.json(resposta_de_user);
+    }
+}
+  else{
+    resposta_de_user = {mensagem: 'Login negado' };
+    res.json(resposta_de_user);
+  }
+
+
+})
+
+app.post('/api/enviar-dados/logout', (req, res) => {
+  const requisicao = req.body;
+  console.log('Requisição recebida em /api/enviar-dados/logout:', req.body)
+  if(requisicao.mensagem === 'Quero sair'){
+    res.json({mensagem: 'Saia'});
+    console.log('O usuário pediu pra sair')
+    // nome = ''
+    resposta_de_login.mensagem = ''
+  }
+  else{
+    res.json({mensagem: 'Não saia'});
+  }
+
+
 })
 
 
@@ -121,6 +182,16 @@ app.post('/api/enviar-dados/upload', (req, res) => {
   res.send('Arquivo enviado com sucesso e registrado no servidor!');
 
 });
+
+
+
+
+
+
+
+
+
+
 
 
 
