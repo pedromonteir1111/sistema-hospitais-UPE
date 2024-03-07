@@ -5,6 +5,7 @@ import LoginBox from './components/LoginBox';
 import RegisterBox from './components/RegisterBox';
 import UserBox from './components/UserBox';
 import FazerUpload from './components/UploadBox';
+import ExamsBox from './components/ExamsBox';
 import HomeBox from "./components/HomeBox";
 
 
@@ -16,7 +17,8 @@ function App() {
         <Route path="/register" element={<RegisterBox />} />
         <Route path="/user" element={<UserBox />} />
         <Route path="/upload" element={<FazerUpload />} />
-        <Route path="/home" element={<HomeBox />} /> 
+        <Route path="/exams" element={<ExamsBox />} />
+        <Route path="/home" element={<HomeBox />} />
       </Routes>
     </Router>
   );
