@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans";
+}
+
+html,
+body {
+    height: 100%;
+}
+
+/*
+Classes Auxiliares
+*/
+
+.center {
+    margin: 0 auto;
+    max-width: 1280px;
+    padding: 0 2%;
+}
+
+.clear {
+    clear: both;
+}
+
+/***/
+.layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+section.main {
+    position: relative;
+    background-image: url("images/bg6.png");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    padding: 15px 0;
+    min-height: 800px;
+}
+
+section.main header {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
+}
+
+.icons-social {
+    float: right;
+}
+
+.icons-social a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin: 0 15px;
+}
+
+.logo {
+    margin-top: 20px;
+    float: left;
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+nav.desktop {
+    margin-top: 20px;
+    float: right;
+}
+
+nav.desktop ul {
+    list-style-type: none;
+}
+
+nav.desktop li {
+    display: inline-block;
+    margin: 0 15px;
+    font-size: 17px;
+    font-weight: lighter;
+}
+
+nav.desktop a {
+    color: white;
+    text-decoration: none;
+}
+
+.conteudo-header {
+    position: relative;
+    z-index: 2;
+    margin: 40px 0;
+    max-width: 700px;
+    margin: 180px 0;
+}
+
+.conteudo-header h2 {
+    font-size: 39px;
+    font-weight: lighter;
+    color: white;
+}
+
+.conteudo-header h2 > span {
+    color: rgb(56, 222, 237);
+}
+
+.conteudo-header p {
+    color: white;
+    margin-top: 18px;
+    font-size: 16px;
+    font-weight: lighter;
+}
+
+.conteudo-header a {
+    display: block;
+    width: 177px;
+    height: 44px;
+    background: rgb(18, 169, 189);
+    color: white;
+    text-align: center;
+    line-height: 44px;
+    text-decoration: none;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.frase-mapas {
+    width: 100%;
+    text-align: center;
+    padding: 27px 2%;
+    background: rgb(236, 236, 236);
+}
+
+.frase-mapas h2 {
+    display: inline-block;
+    border-top: 2px solid rgb(21, 120, 138);
+    color: rgb(21, 120, 138);
+    text-transform: uppercase;
+    font-weight: lighter;
+    font-size: 20px;
+}
+
+.box-mapas {
+    padding: 40px 0;
+}
+
+.box-mapas > .center {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box-mapas-single {
+    width: 33.3%;
+    padding: 0 30px;
+}
+
+.box-mapas-wraper {
+    width: 100%;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    border: 1px solid #ccc;
+    min-height: 200px;
+}
+
+.box-mapas-single h2 {
+    background: rgb(18, 169, 189);
+    color: white;
+    text-align: center;
+    padding: 3px;
+    font-weight: lighter;
+}
+
+section.parallax {
+    position: relative;
+    width: 100%;
+    padding: 40px 0;
+    min-height: 300px;
+    background-image: url("images/bg7.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+section.parallax > .center {
+    position: relative;
+    z-index: 2;
+    margin: 40px auto;
+    max-width: 960px;
+}
+
+section.parallax h2 {
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+}
+
+section.parallax p {
+    color: white;
+    margin-top: 15px;
+}
+
+.overlay-parallax {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 20, 10, 0.6);
+}
+
+section.final-section {
+    padding: 50px 0;
+}
+
+.w50 {
+    float: left;
+    width: 50%;
+    padding: 0 20px;
+}
+
+section.final-section h2 {
+    position: relative;
+    font-weight: lighter;
+    color: #777777;
+    font-size: 24px;
+}
+
+section.final-section h2 > .border-efeito {
+    width: 100px;
+    height: 2px;
+    background: #777777;
+    position: absolute;
+}
+
+@media screen and (max-width: 768px) {
+    .box-mapas-single {
+        width: 100%;
+        margin: 15px 0;
+    }
+}
