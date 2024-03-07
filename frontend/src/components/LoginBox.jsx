@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import logo from "../logo.png"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './LoginBox.css'
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+
+
 
 //componente da caixa de login
 function LoginBox() {
   var [respostaDoBackend, setRespostaDoBackend] = useState('');
   const [login, setLogin] = useState('');
   const [senha, setSenha] = useState('');
-  // const history = useHistory();
+  const navigate = useNavigate();
   const enviarDadosParaBackend = async (e) => {
     e.preventDefault(); 
 
@@ -31,11 +32,12 @@ function LoginBox() {
     if (respostaDoBackend.mensagem === 'Login realizado') {
       alert('Login realizado com sucesso!');
       // history.push('/home');
+      navigate('/user');
       
     }
   }
 
-
+  Checar_cadastro();
   return (
     <div className="screen">
       <div className="login-card">
@@ -53,7 +55,7 @@ function LoginBox() {
         value={senha}
         />
 
-        <button type="submit" className="login-btn" onClick={Checar_cadastro}>
+        <button type="submit" className="login-btn">
           Entrar
         </button>
         </form>

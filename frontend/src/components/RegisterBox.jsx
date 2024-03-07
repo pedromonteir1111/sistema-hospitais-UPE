@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import logo from '../upe.jpg';
 import './RegisterBox.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -15,6 +15,7 @@ function RegisterBox() {
   const [login, setLogin] = useState('');
   const [nome, setNome] = useState('');
   // const [medico, setMedico] = useState('');
+  const navigate = useNavigate();
 
   const enviarDadosParaBackend = async (e) => {
     e.preventDefault(); 
@@ -41,11 +42,14 @@ function RegisterBox() {
   const exibirMensagem = () => {
     if (respostaDoBackend.mensagem === 'Dados recebidos com sucesso!') {
       alert('Cadastro realizado com sucesso!');
-      window.location.href = '/login'
+      // window.location.href = '/login'
+      navigate('/login');
 
     }
     
   };
+  
+  exibirMensagem();
 
   return (
     <div className="screen">
@@ -97,7 +101,7 @@ function RegisterBox() {
           />
 
 
-          <button type="submit" className="register-btn" onClick={exibirMensagem}>
+          <button type="submit" className="register-btn">
             Registrar
           </button>
         </form>
