@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from "../logo.png"
+import logo from "./logo.png"
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginBox.css'
 import axios from 'axios';
@@ -39,14 +39,14 @@ function LoginBox() {
 
   Checar_cadastro();
   return (
-    <div className="screen">
-      <div className="login-card">
-        <img src={logo} alt="logo" />
-  
-        <h1>Login</h1>
-        
-        <form onSubmit={enviarDadosParaBackend}>
-        <input name="username" placeholder="Nome"
+    <div className="login-form-wrap">
+      <div className="container">
+        <img src={logo} alt="Logo"/>
+      </div>
+      <h2 className = 'texto-login'>Acessar Sistema</h2>
+      <div>     
+        <form className = 'login-form' onSubmit={enviarDadosParaBackend}>
+        <input name="username" placeholder="Nome" required
         onChange={(e) => setLogin(e.target.value)}
         value={login} 
         />
@@ -55,7 +55,7 @@ function LoginBox() {
         value={senha}
         />
 
-        <button type="submit" className="login-btn">
+        <button type="submit" className="btn-login">
           Entrar
         </button>
         </form>
@@ -64,7 +64,7 @@ function LoginBox() {
         )}
 
         <Link to="/register">
-          <button className="register-btn">Criar conta</button>
+          <button className="btn-login">Criar conta</button>
         </Link>
       </div>
     </div>
