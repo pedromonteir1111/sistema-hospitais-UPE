@@ -16,7 +16,7 @@ function UserBox() {
     const navigate = useNavigate();
 
     var [respostaDoBackend, setRespostaDoBackend] = useState('');
-    var [comando_sair, setComando_sair] = useState('');
+    // var [comando_sair, setComando_sair] = useState('');
     // const history = useHistory();
     
     useEffect(() => {
@@ -49,7 +49,7 @@ function UserBox() {
           });
           
           console.log('Enviou')
-          setComando_sair(resposta.data);
+        //   setComando_sair(resposta.data);
       
           // Coloque o restante do código aqui, se necessário
           if (resposta.data.mensagem === 'Saia') {
@@ -147,7 +147,7 @@ function UserBox() {
                         Clicando no botão abaixo, você terá acesso ao resultado de todos
                         os seus exames feitos em <br />hospitais UPE.
                     </p>
-                    <a href="#" className="buttonExames">
+                    <a href="/exams" className="buttonExames">
                         Seus exames</a>
                         </div>
                         <div className="textbox2">
