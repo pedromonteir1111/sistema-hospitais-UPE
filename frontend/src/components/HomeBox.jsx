@@ -7,7 +7,9 @@ import './HomeBox.css';
 function HomeBox() {
     return (
         <div>
-
+            <link rel="preconnect" href="https://fonts.googleapis.com"/>
+            <link rel="preconnect" href="https://fonts.googleapis.com"/>
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>
             <section className="main">
             <div className="layer"></div>
             <div className="center">
