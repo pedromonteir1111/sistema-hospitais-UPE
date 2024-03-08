@@ -14,7 +14,7 @@ function UserBox() {
     const navigate = useNavigate();
 
     var [respostaDoBackend, setRespostaDoBackend] = useState('');
-    var [comando_sair, setComando_sair] = useState('');
+    // var [comando_sair, setComando_sair] = useState('');
     // const history = useHistory();
     
     useEffect(() => {
@@ -44,7 +44,7 @@ function UserBox() {
           });
           
           console.log('Enviou')
-          setComando_sair(resposta.data);
+        //   setComando_sair(resposta.data);
       
           // Coloque o restante do código aqui, se necessário
           if (resposta.data.mensagem === 'Saia') {
@@ -121,19 +121,19 @@ function UserBox() {
                             Sair
                         </a>
 
-                        </li>
-                        </ul>
-                        <div className="clear"></div>
-                        <div className="textbox">
-                        <h2 className="titulo">
-                            <strong>Olá, {respostaDoBackend.nome}! Receba o resultado <br />de seus exames</strong>
-                        </h2>
-                        <p className="descricao">
-                            Clicando no botão abaixo, você terá acesso ao resultado de todos
-                            os seus exames feitos em <br />hospitais UPE.
-                        </p>
-                        <a href="#" className="buttonExames">
-                            Seus exames</a>
+                    </li>
+                    </ul>
+                    <div className="clear"></div>
+                    <div className="textbox">
+                    <h2 className="titulo">
+                        <strong>Olá, {respostaDoBackend.nome}! Receba o resultado <br />de seus exames</strong>
+                    </h2>
+                    <p className="descricao">
+                        Clicando no botão abaixo, você terá acesso ao resultado de todos
+                        os seus exames feitos em <br />hospitais UPE.
+                    </p>
+                    <a href="/exams" className="buttonExames">
+                        Seus exames</a>
                         </div>
                             <div className="textbox2">
                             <h2 className="titulo2"><strong>Conheça a nossa estrutura</strong></h2>
