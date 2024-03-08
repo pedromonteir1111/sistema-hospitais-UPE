@@ -8,9 +8,9 @@ const { log } = require('console');
 const { PassThrough } = require('stream');
 const port = 4000; 
 
-
 var nome;
 var nome_inicial;
+var medico;
 var UsuarioExistente = false;
 var resposta_de_login;
 var resposta_de_registro;
@@ -67,14 +67,9 @@ app.post('/api/enviar-dados/registrar', (req, res) => {
   
   });
 
-
-
-
-
 app.post('/api/enviar-dados/logar', (req, res) => {
 
   const Login = req.body;
-  var medico;
 
   fs.readFile(bancodedados, 'utf8', (err, dadosAtuais) => {
       if (err) {
@@ -108,12 +103,9 @@ app.post('/api/enviar-dados/logar', (req, res) => {
               res.json(resposta_de_login);
           }
           else{
-            if(medico == false){
-              resposta_de_login = { mensagem: 'Login realizado' };
-              console.log('Login realizado');
-              res.json(resposta_de_login);
-            }
-              
+            resposta_de_login = { mensagem: 'Login realizado' };
+            console.log('Login realizado');
+            res.json(resposta_de_login);             
           }
 
           } 
@@ -122,17 +114,8 @@ app.post('/api/enviar-dados/logar', (req, res) => {
           resposta_de_login = { mensagem: 'Conta não cadastrada!' };
           res.json(resposta_de_login);
       }
-
-      
-      
-      
-
-
   });
-
-
 })
-
 
 app.post('/api/enviar-dados/user', (req, res) => {
   const requisicao = req.body;
@@ -140,7 +123,7 @@ app.post('/api/enviar-dados/user', (req, res) => {
   if(resposta_de_login.mensagem == 'Login realizado'){
     
     if(requisicao.mensagem == 'Quero saber o usuário'){
-      resposta_de_user = {nome: nome_inicial, mensagem: 'Login feito' };
+      resposta_de_user = {nome: nome_inicial, isMedico: medico, mensagem: 'Login feito' };
       console.log(`O usuário ${nome} fez login`);
       res.json(resposta_de_user);
     }
@@ -149,7 +132,6 @@ app.post('/api/enviar-dados/user', (req, res) => {
     resposta_de_user = {mensagem: 'Login negado' };
     res.json(resposta_de_user);
   }
-
 
 })
 
@@ -169,8 +151,6 @@ app.post('/api/enviar-dados/logout', (req, res) => {
 
 })
 
-
-
 app.post('/api/enviar-dados/upload', (req, res) => {
   const file = req.body.file;
   const fileName = req.body.fileName;
@@ -183,18 +163,19 @@ app.post('/api/enviar-dados/upload', (req, res) => {
 
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
   app.listen(port, () => {
     console.log(`Servidor backend está rodando em http://localhost:${port}`);
   });
+
+  /* para a home de medicos, nao esta pronto
+  
+  app.post('/api/enviar-dados/user/medico/exames', (req, res) => {
+    const requisicao = req.body;
+       
+    if(requisicao.mensagem == 'Quero os exames'){
+      resposta_de_user = {nome: nome_inicial, isMedico: medico, mensagem: 'Login feito' };
+      res.json(resposta_de_user);
+    }
+
+  
+  })*/

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from "./logo.png"
+import logo from "./logo1.png"
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginBox.css'
 import axios from 'axios';
@@ -12,6 +12,7 @@ function LoginBox() {
   const [login, setLogin] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
+  
   const enviarDadosParaBackend = async (e) => {
     e.preventDefault(); 
 

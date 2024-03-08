@@ -6,21 +6,24 @@
       "login": "2312312",
       "cpf": "33232323",
       "date": "2024-02-28",
-      "senha": "3232323232"
+      "senha": "3232323232",
+      "medico": false
     },
     {
       "email": "joao@gmail.com",
       "login": "joao2",
       "cpf": "123123123123",
       "date": "2024-03-05",
-      "senha": "coxinha123"
+      "senha": "coxinha123",
+      "medico": false
     },
     {
       "email": "",
       "login": "",
       "cpf": "",
       "date": "",
-      "senha": ""
+      "senha": "",
+      "medico": false
     },
     {
       "email": "edward@gmaill.com",
@@ -29,7 +32,7 @@
       "date": "2004-04-02",
       "senha": "pasteldecana",
       "nome": "Edward",
-      "medico": false
+      "medico": true
     },
     {
       "email": "joaozinho@daasd",
@@ -83,6 +86,43 @@
       "senha": "123123123123123",
       "nome": "asdjkasjdjkas",
       "medico": false
+    },
+    {
+      "email": "jn@gmail.com",
+      "login": "joaoneto",
+      "cpf": "12312312313177",
+      "date": "2024-02-26",
+      "senha": "brabo",
+      "nome": "Joao Neto",
+      "medico": true
+    }
+  ],
+
+  "exames": [
+    {
+      "name": "Alika Myers",
+      "numberrange": 9,
+      "text": "a, scelerisque sed, sapien. Nunc pulvinar arcu et pede. Nunc"
+    },
+    {
+      "name": "Ila Franco",
+      "numberrange": "0",
+      "text": "magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac"
+    },
+    {
+      "name": "Darrel Sosa",
+      "numberrange": 9,
+      "text": "parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse tristique"
+    },
+    {
+      "name": "Hannah Little",
+      "numberrange": 5,
+      "text": "Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus."
+    },
+    {
+      "name": "Rana Crane",
+      "numberrange": 4,
+      "text": "eget, venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer"
     }
   ]
 }
