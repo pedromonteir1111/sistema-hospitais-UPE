@@ -18,7 +18,7 @@ function App() {
         <Route path="/user" element={<UserBox />} />
         <Route path="/upload" element={<FazerUpload />} />
         <Route path="/exams" element={<ExamsBox />} />
-        <Route path="/home" element={<HomeBox />} />
+        <Route path="/" element={<HomeBox />} />
       </Routes>
     </Router>
   );
