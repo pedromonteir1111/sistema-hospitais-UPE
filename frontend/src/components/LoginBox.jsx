@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import logo from "./upe.jpg"
+import logo from "../upe.jpg"
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginBox.css'
 import axios from 'axios';
-
-
 
 //componente da caixa de login
 function LoginBox() {

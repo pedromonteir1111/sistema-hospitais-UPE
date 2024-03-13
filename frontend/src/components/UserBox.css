@@ -31,6 +31,13 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
+
+.doctor-home{
+    margin: auto;
+    width: 100%;
+    display: inline-block;
+}
+
 ol, ul {
 	list-style: none;
 }
@@ -60,8 +67,9 @@ html, body{
 
 .fundo{
     width: 100%;
-    height: 500px;
+    height: 65vh;
     background: url("fundosite.png") no-repeat center 0;
+    background-size: 100vw;
     padding-top: 45px;
 }
 

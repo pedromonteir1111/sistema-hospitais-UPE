@@ -166,16 +166,36 @@ app.post('/api/enviar-dados/upload', (req, res) => {
   app.listen(port, () => {
     console.log(`Servidor backend está rodando em http://localhost:${port}`);
   });
-
-  /* para a home de medicos, nao esta pronto
   
   app.post('/api/enviar-dados/user/medico/exames', (req, res) => {
     const requisicao = req.body;
        
-    if(requisicao.mensagem == 'Quero os exames'){
-      resposta_de_user = {nome: nome_inicial, isMedico: medico, mensagem: 'Login feito' };
-      res.json(resposta_de_user);
+    if(requisicao.mensagem === 'Quero os exames'){
+      fs.readFile(bancodedados, 'utf8', (err, datastr) => {
+        if (err) {
+          console.error('Erro ao ler o banco de dados', err);
+          return;
+        }
+        const data = JSON.parse(datastr);
+        console.log(data.exames);
+        res.json(data.exames);
+      })
     }
+  })
 
-  
-  })*/
+  app.post('/api/enviar-dados/user/medico/pacientes', (req, res) => {
+    const requisicao = req.body;
+       
+    if(requisicao.mensagem === 'Quero os pacientes'){
+      fs.readFile(bancodedados, 'utf8', (err, datastr) => {
+        if (err) {
+          console.error('Erro ao ler o banco de dados', err);
+          return;
+        }
+        const data = JSON.parse(datastr);
+        const pacientes = data.usuarios.filter(usuario => !usuario.medico && usuario.nome)
+        console.log(pacientes.map((paciente) => {return {name: paciente.nome, text: paciente.cpf}}));
+        res.json(pacientes.map((paciente) => {return {name: paciente.nome, text: paciente.cpf,}}));
+      })
+    }
+  })

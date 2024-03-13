@@ -32,7 +32,7 @@ function UserBox() {
         if (!respostaDoBackend) {
             enviarDadosParaBackend();
         }
-    }, [respostaDoBackend]);
+    }, []);
 
     const logout = async () => {
         console.log('Função logout chamada');
@@ -65,7 +65,6 @@ function UserBox() {
         }
     }
     console.log(sair) 
-    console.log(respostaDoBackend.isMedico);
 
     try{
         if(respostaDoBackend.mensagem == 'Login negado'){
@@ -89,9 +88,9 @@ function UserBox() {
     else{
         if (respostaDoBackend.isMedico){
             return(
-                <DoctorHome nome={respostaDoBackend.nome}/>
+                <div className='doctor-home'><DoctorHome nome={respostaDoBackend.nome}/></div>
             );
-        } else {
+        } else if (!respostaDoBackend.isMedico){
             return (
                 <html lang="pt-br" dir="ltr">
                 <head>

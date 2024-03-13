@@ -1,66 +1,66 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import './DoctorHome.css';
 import TableDoctor from "./TableDoctor.jsx";
 
 //pagina home para medicos
 function DoctorHome(props) {
-    
+
     const [active, setActive] = useState('exames');
-    const [response, setResponse] = useState('');
+    const [exames, setExames] = useState([]);
+    const [pacientes, setPacientes] = useState([]);
 
-    /* a parte de requisicao nao esta pronta ainda
     useEffect(() => {
-        if(active === "exames"){
-            const sendReqExames = async () => {
-                try {
-                    var resposta = await axios.post('http://localhost:4000/api/enviar-dados/user/medico/exames', {
-                        mensagem: "Quero os exames",
-                    });
-                    setResponse(resposta.data);
+        const sendReq = async () => {
+            try {
+                await axios.post('http://localhost:4000/api/enviar-dados/user/medico/exames', {
+                    mensagem: "Quero os exames",
+                }).then(resp => {setExames(resp.data); console.log(exames)});
 
-                } catch (erro) {
-                    console.error('Erro ao enviar dados para o backend:', erro);
-                }
-            };
-              
-            if (!response) {
-                sendReqExames();
+            } catch (erro) {
+                console.error('Erro ao enviar dados para o backend:', erro);
             }
-        } else {
-            const sendReqPacientes = async () => {
-                try {
-                    var resposta = await axios.post('http://localhost:4000/api/enviar-dados/user/medico/pacientes', {
-                        mensagem: "Quero os pacientes",
-                    });
-                    setResponse(resposta.data);
+            
+            try {
+                await axios.post('http://localhost:4000/api/enviar-dados/user/medico/pacientes', {
+                    mensagem: "Quero os pacientes",
+                }).then(resp => {setPacientes(resp.data); console.log(pacientes)});
 
-                } catch (erro) {
-                    console.error('Erro ao enviar dados para o backend:', erro);
-                }
-            };
-              
-            if (!response) {
-                sendReqPacientes();
+            } catch (erro) {
+                console.error('Erro ao enviar dados para o backend:', erro);
             }
+        }          
+           
+        if (!!exames) {
+            sendReq();
         }
-        
 
-    }, [active]); */
-    
+        if (!!pacientes) {
+            sendReq();
+        }     
+    }, []);
+
     return(
-        <div>
+        <div className="homepage">
             <div className="title-card">
                 <h1>Olá, doutor {props.nome}</h1>
             </div>
 
             <div className="action-menu">
-                <button onClick={() => {setActive('exames')}}>Exames</button>
-                <button onClick={() => {setActive('pacientes')}}>Cadastrar Pacientes</button>
+                <button className={active === 'exames' ? 'btn-active' : 'btn'} onClick={() => {setActive('exames')}}>Exames</button>
+                <button className={active === 'pacientes' ? 'btn-active' : 'btn'} onClick={() => {setActive('pacientes')}}>Pacientes</button>
             </div>
 
             <div className="content-card">
-                {active === "exames" && <TableDoctor/>}
+                <div className={active === "pacientes" ? 'button-show' : 'button-hidden'}>
+                    <Link to="/register">
+                        <button className="registrar-btn">Cadastrar Paciente</button>
+                    </Link>
+                </div>
+
+                {active === "exames" && <TableDoctor data={exames} type="exames"/>}
+                {active === "pacientes" && <TableDoctor data={pacientes} type="pacientes"/>}
             </div>
         </div>   
     )

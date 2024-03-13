@@ -4,28 +4,6 @@ import {useNavigate} from 'react-router-dom';
 import './ExamsBox.css'
 import axios from 'axios';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function ExamsBox () {
 
     var sair = false;

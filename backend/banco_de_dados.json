@@ -32,7 +32,7 @@
       "date": "2004-04-02",
       "senha": "pasteldecana",
       "nome": "Edward",
-      "medico": true
+      "medico": false
     },
     {
       "email": "joaozinho@daasd",
@@ -101,27 +101,22 @@
   "exames": [
     {
       "name": "Alika Myers",
-      "numberrange": 9,
       "text": "a, scelerisque sed, sapien. Nunc pulvinar arcu et pede. Nunc"
     },
     {
       "name": "Ila Franco",
-      "numberrange": "0",
       "text": "magna. Ut tincidunt orci quis lectus. Nullam suscipit, est ac"
     },
     {
       "name": "Darrel Sosa",
-      "numberrange": 9,
       "text": "parturient montes, nascetur ridiculus mus. Aenean eget magna. Suspendisse tristique"
     },
     {
       "name": "Hannah Little",
-      "numberrange": 5,
       "text": "Vestibulum accumsan neque et nunc. Quisque ornare tortor at risus."
     },
     {
       "name": "Rana Crane",
-      "numberrange": 4,
       "text": "eget, venenatis a, magna. Lorem ipsum dolor sit amet, consectetuer"
     }
   ]
