@@ -10,7 +10,6 @@ function LoginBox() {
   const [login, setLogin] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
-  
   const enviarDadosParaBackend = async (e) => {
     e.preventDefault(); 
 
@@ -46,7 +45,8 @@ function LoginBox() {
         <h2 className = 'texto-login'>Acessar Sistema</h2>
         <div>     
           <form className = 'login-form' onSubmit={enviarDadosParaBackend}>
-          <input name="username" placeholder="Nome" required
+          <input type="text"
+          name="username" placeholder="Nome" required
           onChange={(e) => setLogin(e.target.value)}
           value={login} 
           />
@@ -63,7 +63,7 @@ function LoginBox() {
             <p>{respostaDoBackend.mensagem}</p>
           )}
 
-          <Link to="/register">
+          <Link to="/register" className='link'>
             <button className="btn-register">Criar conta</button>
           </Link>
         </div>

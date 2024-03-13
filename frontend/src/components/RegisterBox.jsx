@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import logo from '../upe.jpg';
+import logo from './upe.jpg';
 import './RegisterBox.css';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -53,9 +53,11 @@ function RegisterBox() {
 
   return (
     <div className="screen">
-      <div className="register-card">
+      <div className="login-form">
+        <div className='logo'>
         <img src={logo} alt="logo" />
-        <h1>Registro</h1>
+        </div>
+        <h1 className='h1cadastrar'>Cadastrar Paciente</h1>
         <form onSubmit={enviarDadosParaBackend}>
           
 
@@ -67,12 +69,14 @@ function RegisterBox() {
             value={email}
           />
             <input
+            type='text'
             name="nome"
             placeholder="Nome completo"
             onChange={(e) => setNome(e.target.value)}
             value={nome}
           />
           <input
+            type='text'
             name="login"
             placeholder="Login"
             onChange={(e) => setLogin(e.target.value)}
@@ -80,6 +84,7 @@ function RegisterBox() {
           />
           
           <input
+            type="text"
             name="cpf"
             placeholder="CPF"
             onChange={(e) => setCPF(e.target.value)}

@@ -40,7 +40,8 @@ input {
 }
 
 input[type="password"],
-input[type="email"] {
+input[type="email"],
+input[type="text"] {
   width: 100%;
   padding: 10px 0 0 10px;
   margin: 10px 0;
@@ -117,6 +118,15 @@ input[type="email"]:focus {
   padding: 10px;
 }
 
+.link {
+  background-color: #fff;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+}	
 
 .container {
   margin: 0 auto; /* Define margens automáticas na esquerda e direita */
