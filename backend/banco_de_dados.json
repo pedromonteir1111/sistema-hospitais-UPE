@@ -15,7 +15,11 @@
       "cpf": "123123123123",
       "date": "2024-03-05",
       "senha": "coxinha123",
-      "medico": false
+      "medico": false,
+      "exames": [
+        1
+      ],
+      "p_id": 1
     },
     {
       "email": "",
@@ -32,7 +36,9 @@
       "date": "2004-04-02",
       "senha": "pasteldecana",
       "nome": "Edward",
-      "medico": false
+      "medico": true,
+      "pacientes": [1,2],
+      "id": 1
     },
     {
       "email": "joaozinho@daasd",
@@ -94,10 +100,29 @@
       "date": "2024-02-26",
       "senha": "brabo",
       "nome": "Joao Neto",
-      "medico": true
+      "medico": true,
+      "id": 1
+    },
+    {
+      "email": "asdasdaws@123123",
+      "login": "asdadasdas",
+      "cpf": "12312312313",
+      "date": "2024-03-07",
+      "senha": "12312312312312313",
+      "nome": "asdadadasd",
+      "medico": false
+    },
+    {
+      "email": "dasdasds@asdasdasd",
+      "login": "asdasdasdasd",
+      "cpf": "123123123123123",
+      "date": "2024-03-03",
+      "senha": "asdasdasdasdasdasd",
+      "nome": "asdasdasdasd",
+      "medico": false,
+      "p_id": 1
     }
   ],
-
   "exames": [
     {
       "name": "Alika Myers",
