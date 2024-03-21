@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import logo from "./logo.png"
+import procape from "./procape.jpg"
+import huoc from "./huoc.jpg"
+import cisam from "./cisam.png"
 import {useNavigate} from 'react-router-dom';
 import './UserBox.css'
 import axios from 'axios';
@@ -112,36 +115,39 @@ function UserBox() {
                     <div className="fundo">
                     <div className="center">
                         <a href="#" className="logo">
-                        <i className="logomarca"></i>
-                        </a>
-                        <ul className="menu">
+                    <ul className="menu">
                         <li>
-                        <a style={{ cursor: 'pointer' }} className="buttonSair" onClick={() => alternar_estado(sair)}>
+                        <a style={{ cursor: 'pointer' }}  className="buttonSair" onClick={() => alternar_estado(sair)}>
                             Sair
                         </a>
-
                     </li>
                     </ul>
-                    <div className="clear"></div>
+                        <i className="logomarca"></i>
+                        </a>
                     <div className="textbox">
-                    <h2 className="titulo">
-                        <strong>Olá, {respostaDoBackend.nome}! Receba o resultado <br />de seus exames</strong>
-                    </h2>
-                    <p className="descricao">
-                        Clicando no botão abaixo, você terá acesso ao resultado de todos
-                        os seus exames feitos em <br />hospitais UPE.
-                    </p>
-                    <a href="/exams" className="buttonExames">
-                        Seus exames</a>
+                        <h2>
+                            <strong>Olá, {respostaDoBackend.nome}! Receba o resultado de seus exames</strong>
+                        </h2>
+                        <p className="descricao">
+                            Escolha a opção desejada para visualizar o resultado de seus exames.
+                        </p>
+                        <nav className='paciente'>
+                            <ul>
+                                <li><a href="/exams" className="buttonExames">
+                            Seus exames</a></li>
+                            </ul>
+                        </nav>
                         </div>
-                            <div className="textbox2">
-                            <h2 className="titulo2"><strong>Conheça a nossa estrutura</strong></h2>
-                                <a href="https://www.upe.br/estrutura-academica-das-unidades-do-complexo-hospitalar.html" target="_blank">
-                                <img src="hosp.png" width="100%" height= '100%' alt="Imagem do hospital" />
-                                </a>
+                        </div>
+                        </div>
+                        <div className='container'>
+                            <h2><strong>Conheça a nossa estrutura</strong></h2>
+                            <div className='section'>
+                                <img src={procape} alt="Pronto-Socorro Cardiológico Universitário de Pernambuco - Prof. Luiz Tavares" />
+                                <img src={huoc} alt="Pronto-Socorro Cardiológico Universitário de Pernambuco - Prof. Luiz Tavares" />
+                                <img src={cisam} alt="Pronto-Socorro Cardiológico Universitário de Pernambuco - Prof. Luiz Tavares" />
                             </div>
-                        </div>
-                    </div>
+                </div>
                 </body>
                 </html>
             );
