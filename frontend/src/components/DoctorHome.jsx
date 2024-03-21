@@ -7,20 +7,10 @@ import TableDoctor from "./TableDoctor.jsx";
 function DoctorHome(props) {
 
     const [active, setActive] = useState('exames');
-    const [exames, setExames] = useState([]);
     const [pacientes, setPacientes] = useState([]);
 
     useEffect(() => {
-        const sendReq = async () => {
-            try {
-                await axios.post('http://localhost:4000/api/enviar-dados/user/medico/exames', {
-                    mensagem: "Quero os exames",
-                }).then(resp => {setExames(resp.data); console.log(exames)});
-
-            } catch (erro) {
-                console.error('Erro ao enviar dados para o backend:', erro);
-            }
-            
+        const sendReq = async () => {        
             try {
                 await axios.post('http://localhost:4000/api/enviar-dados/user/medico/pacientes', {
                     mensagem: "Quero os pacientes",
@@ -30,10 +20,6 @@ function DoctorHome(props) {
                 console.error('Erro ao enviar dados para o backend:', erro);
             }
         }          
-           
-        if (!!exames) {
-            sendReq();
-        }
 
         if (!!pacientes) {
             sendReq();
@@ -58,7 +44,7 @@ function DoctorHome(props) {
                     </Link>
                 </div>
 
-                {active === "exames" && <TableDoctor data={exames} type="exames"/>}
+                {active === "exames" && <TableDoctor data={pacientes} type="exames"/>}
                 {active === "pacientes" && <TableDoctor data={pacientes} type="pacientes"/>}
             </div>
         </div>   
