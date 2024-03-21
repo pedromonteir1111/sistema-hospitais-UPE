@@ -338,5 +338,20 @@ app.post('/api/enviar-dados/user/exames/listar', (req, res) => {
       });
   });
 });
+
+
+app.post('/api/enviar-dados/user/exames/download', (req, res) => {
+    const diretorio = './Arquivos_Enviados_Upload';
+    const caminho = req.body.caminho;
+
+    // Verifica se o arquivo existe
+    const arquivoPath = path.join(diretorio, caminho);
+    if (!fs.existsSync(arquivoPath)) {
+        return res.status(404).json({ mensagem: 'Arquivo não encontrado' });
+    }
+
+    // Envia o arquivo como resposta da requisição
+    res.download(arquivoPath);
+});
   // const pacientes = data.usuarios.filter(usuario => !usuario.medico && usuario.nome && lista_ids_dos_pacientes.includes(usuario.p_id))
         // console.log(pacientes.map((paciente) => {return {name: paciente.nome, text: paciente.cpf}}));
