@@ -4,7 +4,6 @@ import axios from "axios";
 import './DoctorHome.css';
 import TableDoctor from "./TableDoctor.jsx";
 
-//pagina home para medicos
 function DoctorHome(props) {
 
     const [active, setActive] = useState('exames');
