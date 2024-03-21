@@ -11,6 +11,9 @@ function DoctorHome(props) {
     var [cpf, setCPF] = useState();
     const navigate = useNavigate();
 
+    var mensagem_de_saida;
+    var sair = false;
+
     useEffect(() => {
         const sendReq = async () => {        
             try {
@@ -26,10 +29,6 @@ function DoctorHome(props) {
         if (!!pacientes) {
             sendReq();
         }
-        
-        
-        
-
 
     }, []);
     
@@ -48,12 +47,43 @@ function DoctorHome(props) {
 
     }
 
-    
+    const logout = async () => {
+        console.log('Função logout chamada');
+        mensagem_de_saida = 'Quero sair';
+      
+        try {
+          var resposta = await axios.post('http://localhost:4000/api/enviar-dados/logout', {
+            mensagem: mensagem_de_saida,
+          });
+          
+          console.log('Enviou')
+        //   setComando_sair(resposta.data);
+      
+          // Coloque o restante do código aqui, se necessário
+          if (resposta.data.mensagem === 'Saia') {
+            navigate('/login');
+          }
+        } catch (erro) {
+          console.error('Erro ao enviar dados para o backend:', erro);
+        }
+      };
+
+      function alternar_estado(sair){
+        // console.log('Função alternar_estado chamada. Antes:', sair);
+        sair = !sair;
+        // console.log('Função alternar_estado chamada. Depois:', sair);
+        if(sair == true){
+            logout();
+        }
+    }
 
     return(
         <div className="homepage">
             <div className="title-card">
                 <h1>Olá, doutor {props.nome}</h1>
+                <a style={{ cursor: 'pointer' }}  className="buttonSair" onClick={() => alternar_estado(sair)}>
+                        Sair
+                </a>
             </div>
 
             <div className="action-menu">

@@ -284,6 +284,9 @@ app.post('/api/enviar-dados/uploader', upload.single('file'), (req, res) => {
     }
   });
 
+app.get("/download", (req, res) => {
+  res.download(__dirname + '/Arquivos_Enviados_Upload/backLinkedIn.jpg');
+})
 
   // const pacientes = data.usuarios.filter(usuario => !usuario.medico && usuario.nome && lista_ids_dos_pacientes.includes(usuario.p_id))
         // console.log(pacientes.map((paciente) => {return {name: paciente.nome, text: paciente.cpf}}));

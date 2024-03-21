@@ -2,7 +2,8 @@ import React, { useState, useEffect} from 'react';
 import logo from "./logo.png"
 import {useNavigate} from 'react-router-dom';
 import './ExamsBox.css'
-import axios from 'axios';
+import axios from 'axios'
+import FazerDownload from './DownloadBox';
 
 function ExamsBox () {
 
@@ -12,7 +13,6 @@ function ExamsBox () {
     const navigate = useNavigate();
 
     var [comando_sair, setComando_sair] = useState('');
-
 
     const logout = async () => {
         console.log('Função logout chamada');
@@ -34,11 +34,6 @@ function ExamsBox () {
           console.error('Erro ao enviar dados para o backend:', erro);
         }
       };
-    
-
-    
-
-
  
     function alternar_estado(sair){
         // console.log('Função alternar_estado chamada. Antes:', sair);
@@ -47,27 +42,7 @@ function ExamsBox () {
         if(sair == true){
             logout();
         }
-        
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     return (
         <html lang="pt-br" dir="ltr">
@@ -96,30 +71,12 @@ function ExamsBox () {
                 </li>
               </ul>
               <div className="clear"></div>
-              <div className="texto">
-                <h2 className="tittle">
-                  <strong>Status</strong>
-                </h2>
-                <p className="listado">Listado:</p>
-                <a href="#" className="download">
-                  Detalhes
-                </a>
-                <p className="pendente">Resultado pendente:</p>
-                <a href="#" className="download">
-                  Detalhes
-                </a>
-                <p className="pronto">Resultado pronto:</p>
-                <a href="#" className="download">
-                  Detalhes
-                </a>
-              </div>
+              <img src="./exame1.jpg" alt="exame"/>
             </div>
           </div>
         </body>
       </html>
     );
   };
-
-
 
 export default ExamsBox;
