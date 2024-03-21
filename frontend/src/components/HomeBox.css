@@ -16,7 +16,7 @@ Classes Auxiliares
 
 .center {
     margin: 0 auto;
-    max-width: 1280px;
+    max-width: 100%;
     padding: 0 2%;
 }
 
@@ -67,7 +67,7 @@ section.main header {
     margin-top: 20px;
     float: left;
     color: white;
-    font-size: 23px;
+    font-size: 30px;
     font-weight: bold;
 }
 
@@ -77,6 +77,7 @@ nav.desktop {
 }
 
 nav.desktop ul {
+    
     list-style-type: none;
 }
 
@@ -87,16 +88,33 @@ nav.desktop li {
     font-weight: lighter;
 }
 
+.lista-links a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.lista-links a:hover {
+    color: rgb(56, 222, 237);
+}
+
 nav.desktop a {
     color: white;
     text-decoration: none;
 }
 
+
+nav.mobile {
+    display: none;
+}
+
+
+
 .conteudo-header {
     position: relative;
     z-index: 2;
     margin: 40px 0;
-    max-width: 700px;
+    max-width: 100%;
     margin: 180px 0;
 }
 
@@ -111,13 +129,15 @@ nav.desktop a {
 }
 
 .conteudo-header p {
+    line-height: 25px;
     color: white;
     margin-top: 18px;
     font-size: 16px;
-    font-weight: lighter;
+    font-weight: 500px;
 }
 
 .conteudo-header a {
+
     display: block;
     width: 177px;
     height: 44px;
@@ -140,6 +160,7 @@ nav.desktop a {
 .frase-mapas h2 {
     display: inline-block;
     border-top: 2px solid rgb(21, 120, 138);
+    padding-top: 15px;
     color: rgb(21, 120, 138);
     text-transform: uppercase;
     font-weight: lighter;
@@ -147,26 +168,29 @@ nav.desktop a {
 }
 
 .box-mapas {
-    padding: 40px 0;
+    padding-bottom: 150px;
+    padding-top: 50px;
 }
 
 .box-mapas > .center {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center; /* Centraliza os boxes caso não ocupem toda a largura */
 }
 
 .box-mapas-single {
     width: 33.3%;
     padding: 0 30px;
+    box-sizing: border-box; /* Garante que o padding não adicione largura ao elemento */
 }
 
 .box-mapas-wraper {
+    position: relative; /* Permite que o iframe se ajuste ao tamanho deste container */
     width: 100%;
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
     border: 1px solid #ccc;
-    min-height: 200px;
+    padding-bottom: 56.25%; /* Proporção para manter um aspecto de 16:9 */
+    height: 0; /* Permite o uso do padding para definir a altura */
 }
 
 .box-mapas-single h2 {
@@ -175,7 +199,18 @@ nav.desktop a {
     text-align: center;
     padding: 3px;
     font-weight: lighter;
+    margin-bottom: 20px; /* Espaço entre o título e o mapa */
 }
+
+.mapinha iframe {
+    position: absolute;
+    top: 10;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 20px;
+}
+
 
 section.parallax {
     position: relative;
@@ -192,16 +227,22 @@ section.parallax > .center {
     position: relative;
     z-index: 2;
     margin: 40px auto;
-    max-width: 960px;
+    max-width: 100%;
+    text-align: center;
+    line-height: 25px;
 }
 
 section.parallax h2 {
+    font-size: 30px;
+    line-break: auto;
+    line-height: 40px;
     color: white;
     font-weight: bolder;
     text-align: center;
 }
 
 section.parallax p {
+    line-height: 25px;
     color: white;
     margin-top: 15px;
 }
@@ -217,32 +258,69 @@ section.parallax p {
 }
 
 section.final-section {
+    text-align: center;
     padding: 50px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que os itens se ajustem conforme o tamanho da tela */
 }
 
-.w50 {
-    float: left;
-    width: 50%;
-    padding: 0 20px;
+.w50contato, .w50noticia {
+    background-color: #ffffff00;
+    margin: 15px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); 
 }
 
-section.final-section h2 {
-    position: relative;
+.w50contato, .w50noticia {
+    flex: 1;
+    min-width: 10%; 
+    max-width: 35%; 
+}
+
+.w50contato h2, .w50noticia h2 {
+    font-size: 30px;
     font-weight: lighter;
-    color: #777777;
-    font-size: 24px;
+    color: #12a9bd;
+    margin-bottom: 20px;
 }
 
-section.final-section h2 > .border-efeito {
-    width: 100px;
-    height: 2px;
-    background: #777777;
-    position: absolute;
+.w50contato p, .w50noticia p {
+    font-size: 16px;
+    line-height: 25px;
+    color: #777;
+    margin-bottom: 20px;
 }
 
+input[type="text"], textarea, select, input[type="email"] { /* Adicionado input[type="email"] para estilizar igualmente */
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: calc(100% - 22px); /* Ajusta a largura para levar em conta o padding e border */
+}
+
+input[type="submit"] {
+    background-color: #12a9bd;
+    color: white;
+    padding: 5px 100px;
+    border: none;
+    cursor: pointer;
+    width: auto; /* Permite que o botão ajuste seu tamanho ao conteúdo */
+    display: block; /* Faz o botão se alinhar ao centro */
+    margin: 0 auto; /* Centraliza o botão */
+}
+
+/* Melhora a responsividade */
 @media screen and (max-width: 768px) {
-    .box-mapas-single {
-        width: 100%;
-        margin: 15px 0;
+    section.final-section {
+        flex-direction: column; /* Empilha os boxes verticalmente em telas menores */
+    }
+
+    .w50contato, .w50noticia {
+        max-width: 90%; /* Permite que os boxes ocupem mais espaço em telas menores */
     }
 }
+

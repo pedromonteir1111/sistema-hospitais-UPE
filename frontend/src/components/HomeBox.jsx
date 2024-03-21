@@ -22,7 +22,7 @@ function HomeBox() {
                 <div className="clear"></div>
                 <div className="logo">MediConnectPE</div>
                 <nav className="desktop">
-                    <ul>
+                    <ul className='lista-links'>
                     <li><a href="https://upe.br/uh-huoc.html">HUOC</a></li>
                     <li><a href="https://upe.br/uh-procape.html">PROCAPE</a></li>
                     <li><a href="https://upe.br/uh-cisam.html">CISAM</a></li>
@@ -89,8 +89,8 @@ function HomeBox() {
                             <h2>PROCAPE</h2>
                             <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.5121600323373!2d-34.889824825441934!3d-8.04912308039843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab18edaa04d667%3A0x63571c64fc754d0c!2sPROCAPE!5e0!3m2!1spt-BR!2sbr!4v1709655246386!5m2!1spt-BR!2sbr"
-                            width="342"
-                            height="350"
+                            width= "40%"
+                            height="40%"
                             style={{ border: 0 }}
                             allowfullscreen=""
                             loading="lazy"
@@ -107,7 +107,7 @@ function HomeBox() {
                             <h2>CISAM</h2>
                             <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.622800182033!2d-34.887703!3d-8.037768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab19a1a11f9d5f%3A0x991175430ca700c2!2sCISAM-UPE-%20Unidade%20Ambulatorial!5e0!3m2!1spt-BR!2sbr!4v1709795474477!5m2!1spt-BR!2sbr"
-                            width="342"
+                            width="320"
                             height="350"
                             style={{ border: 0 }}
                             allowfullscreen=""
@@ -147,8 +147,8 @@ function HomeBox() {
             </section>
 
             <section className="final-section">
-                <div className="center">
-                <div className="w50 contato">
+
+                <div className="w50contato">
                     <h2>Alguma dúvida? Fale conosco!</h2>
                     <form>
                     <input type="text" placeholder="Insira seu nome" />
@@ -157,7 +157,7 @@ function HomeBox() {
                     <input type="submit" value="Enviar!" />
                     </form>
                 </div>
-                <div className="w50 noticia">
+                <div className="w50noticia">
                     <h2>Fique por dentro!</h2>
                     <div className="w50 noticia-single">
                     <div className="topo-box-noticia">
@@ -192,7 +192,7 @@ function HomeBox() {
                     <div className="clear"></div>
                 </div>
                 <div className="clear"></div>
-                </div>
+            
             </section>
         </div>
 
