@@ -59,7 +59,7 @@ function ExamsBox() {
               <body>
                   <div className="background">
                       <div className="central">
-                          <a href="#" className="logoleft">
+                          <a href="/user" className="logoleft">
                               <i className="logoupe"></i>
                           </a>
                           <ul className="lista">
