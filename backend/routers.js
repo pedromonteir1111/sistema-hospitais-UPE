@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const { log } = require('console');
 const { PassThrough } = require('stream');
 const port = 4000; 
+const multer = require('multer') // Middleware que ajuda no Upload
 
 var nome;
 var nome_inicial;
@@ -135,38 +136,32 @@ app.post('/api/enviar-dados/user', (req, res) => {
 
 })
 
-app.post('/api/enviar-dados/logout', (req, res) => {
-  const requisicao = req.body;
-  console.log('Requisição recebida em /api/enviar-dados/logout:', req.body)
-  if(requisicao.mensagem === 'Quero sair'){
-    res.json({mensagem: 'Saia'});
-    console.log('O usuário pediu pra sair')
-    // nome = ''
-    resposta_de_login.mensagem = ''
-  }
-  else{
-    res.json({mensagem: 'Não saia'});
-  }
+const upload = multer({ dest: 'Arquivos_Enviados_Upload/' });
 
+app.post('/api/enviar-dados/uploader', upload.single('file'), (req, res) => {
+    const ID_arquivo = req.file; // Aqui está o arquivo enviado
+    const Nome_arquivo = req.body.fileName; // Caso o arquivo esteja no CORPO de solicitação
+    
+    // verificar se o arquivo foi recebido
+    if (!ID_arquivo || !Nome_arquivo) {
+        console.log('Dados Não recebidos');
+        return res.status(400).send('Dados do arquivo ausentes ou inválidos');
+    }
 
-})
+    // mover o arquivo para a pasta Arquivos_Enviados_Upload
+    const Path_arquivo = path.join(__dirname, 'Arquivos_Enviados_Upload', Nome_arquivo);
 
-app.post('/api/enviar-dados/upload', (req, res) => {
-  const file = req.body.file;
-  const fileName = req.body.fileName;
-  
-  const filePath = path.join(__dirname, 'ArquivosEnviados.json');
-  const fileData = { fileName, file };
-  const jsonData = JSON.stringify(fileData);
-  fs.appendFileSync(filePath, jsonData + '\n');
-  res.send('Arquivo enviado com sucesso e registrado no servidor!');
-
+    fs.rename(ID_arquivo.path, Path_arquivo, (err) => {
+        if (err) {
+            console.log("Erro ao salvar arquivo:", err);
+            return res.status(500).send('Erro ao salvar o arquivo');
+        }
+        console.log("Arquivo salvo com sucesso em:", Path_arquivo);
+        res.send('Arquivo enviado e salvo com sucesso');
+    });
 });
 
-  app.listen(port, () => {
-    console.log(`Servidor backend está rodando em http://localhost:${port}`);
-  });
-  
+
   app.post('/api/enviar-dados/user/medico/exames', (req, res) => {
     const requisicao = req.body;
        
@@ -199,3 +194,7 @@ app.post('/api/enviar-dados/upload', (req, res) => {
       })
     }
   })
+
+  app.listen(port, () => {
+    console.log(`Servidor backend está rodando em http://localhost:${port}`);
+  });
