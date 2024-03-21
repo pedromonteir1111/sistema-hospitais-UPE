@@ -1,0 +1,30 @@
+.table {
+    width: 500px;
+    margin: auto;
+}
+
+.item {
+    margin-bottom: 5px;
+    padding: 30px 25px;
+    background-color: rgb(211, 225, 240);
+}
+
+.head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: x-large;
+}
+
+.content-show {
+    max-height: 9999px;
+    transition: all 0.1s cubic-bezier(1,0,1,0);
+}
+
+.content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.1s cubic-bezier(0,1,0,1);
+}
+
+
