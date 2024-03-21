@@ -232,7 +232,7 @@ app.post('/api/enviar-dados/uploader', upload.single('file'), (req, res) => {
         }
         const data = JSON.parse(datastr);
         const pacientes = data.usuarios.filter(usuario => !usuario.medico && usuario.nome && lista_ids_dos_pacientes.includes(usuario.p_id))
-        console.log(pacientes.map((paciente) => {return {name: paciente.nome, text: paciente.cpf}}));
+        // console.log(pacientes.map((paciente) => {return {name: paciente.nome, text: paciente.cpf}}));
         res.json(pacientes.map((paciente) => {return {name: paciente.nome, text: paciente.cpf,}}));
       })
     }
@@ -253,10 +253,17 @@ app.post('/api/enviar-dados/uploader', upload.single('file'), (req, res) => {
         for (let user in data.usuarios) {
           if (data.usuarios[user].id == medico_que_esta_logado) {
             for (let i in data.usuarios) {
+              try{
               if (data.usuarios[i].cpf == requisicao.cpf) {
-                data.usuarios[user].pacientes.push(data.usuarios[i].p_id);
                 console.log(data.usuarios[i].p_id)
+                if(!data.usuarios[user].pacientes.includes(data.usuarios[i].p_id))
+                  data.usuarios[user].pacientes.push(data.usuarios[i].p_id);
+          
               }
+            }
+            catch{
+
+            }
             }
           }
         }
@@ -270,6 +277,7 @@ app.post('/api/enviar-dados/uploader', upload.single('file'), (req, res) => {
             return;
           }
           console.log('Dados adicionados ao arquivo.');
+          console.log(nome)
           res.json({ mensagem: 'Vinculei' });
         });
       });
