@@ -10,6 +10,7 @@ function DoctorHome(props) {
     const [active, setActive] = useState('exames');
     const [exames, setExames] = useState([]);
     const [pacientes, setPacientes] = useState([]);
+    var [cpf, setCPF] = useState();
 
     useEffect(() => {
         const sendReq = async () => {
@@ -38,8 +39,28 @@ function DoctorHome(props) {
 
         if (!!pacientes) {
             sendReq();
-        }     
+        }
+        
+        
+        
+
+
     }, []);
+    
+    const vincular = async () => {
+        try {
+            await axios.post('http://localhost:4000/api/enviar-dados/user/medico/pacientes/vincular', {
+                mensagem: "Quero vincular um paciente",
+                cpf: cpf
+            });
+
+        } catch (erro) {
+            console.error('Erro ao enviar dados para o backend:', erro);
+        }
+
+    }
+
+    
 
     return(
         <div className="homepage">
@@ -57,6 +78,16 @@ function DoctorHome(props) {
                     <Link to="/register">
                         <button className="registrar-btn">Cadastrar Paciente</button>
                     </Link>
+                    <div>
+                    <form className = 'login-form' onSubmit={vincular}>
+                    <input type="text"
+                    name="cpf" placeholder="CPF"
+                    onChange={(e) => setCPF(e.target.value)}
+                    value={cpf}
+                    />
+                    <button className="registrar-btn">Vincular Paciente</button>
+                    </form>
+                    </div>
                 </div>
 
                 {active === "exames" && <TableDoctor data={exames} type="exames"/>}
