@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import './DoctorHome.css';
 import TableDoctor from "./TableDoctor.jsx";
@@ -11,6 +11,7 @@ function DoctorHome(props) {
     const [exames, setExames] = useState([]);
     const [pacientes, setPacientes] = useState([]);
     var [cpf, setCPF] = useState();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const sendReq = async () => {
@@ -47,7 +48,8 @@ function DoctorHome(props) {
 
     }, []);
     
-    const vincular = async () => {
+    var vincular = async (e) => {
+        e.preventDefault()
         try {
             await axios.post('http://localhost:4000/api/enviar-dados/user/medico/pacientes/vincular', {
                 mensagem: "Quero vincular um paciente",
@@ -57,6 +59,7 @@ function DoctorHome(props) {
         } catch (erro) {
             console.error('Erro ao enviar dados para o backend:', erro);
         }
+        navigate('/login');
 
     }
 
