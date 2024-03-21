@@ -1,23 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
-import './DownloadBox.css';
-
-
 
 function FazerDownload(props) {
-    const handleDownload = () => {
-        // URL do arquivo a ser baixado
-        const arquivoUrl = props.urlDoArquivo;
-        // Nome do arquivo a ser baixado
-        const nomeArquivo = props.lista;
-
-        // Criando um link <a> temporário para realizar o download
-        const linkDownload = document.createElement('a');
-        linkDownload.href = arquivoUrl;
-        linkDownload.download = nomeArquivo;
-
-        // Clicando automaticamente no link para iniciar o download
-        linkDownload.click();
+    const handleDownload = async () => {
+        try {
+            const resposta = await axios.post('http://localhost:4000/api/enviar-dados/user/exames/download', {
+                caminho: props.lista // Envie o caminho do arquivo para o backend
+            });
+            // Se a requisição for bem-sucedida, o navegador irá iniciar o download automaticamente
+        } catch (erro) {
+            console.error('Erro ao enviar dados para o backend:', erro);
+        }
     };
 
     return (
