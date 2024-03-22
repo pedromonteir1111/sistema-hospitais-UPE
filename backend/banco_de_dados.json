@@ -54,7 +54,6 @@
         242424,
         96967647
       ]
-
     },
     {
       "email": "joaozinho@daasd",
@@ -195,6 +194,16 @@
       "nome": "Mirian Gomes ",
       "medico": false,
       "p_id": 96967647
+    },
+    {
+      "email": "teste@gmail.com",
+      "login": "testesilva",
+      "cpf": "12345",
+      "date": "2024-03-04",
+      "senha": "senha12345",
+      "nome": "teste da silva",
+      "medico": false,
+      "p_id": 82208384
     }
   ]
 }

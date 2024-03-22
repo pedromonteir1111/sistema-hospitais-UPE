@@ -40,7 +40,7 @@ function RegisterBox() {
   
   const exibirMensagem = () => {
     if (respostaDoBackend.mensagem === 'Dados recebidos com sucesso!') {
-      alert('Cadastro realizado com sucesso!');
+      
       navigate('/login');
 
     }
