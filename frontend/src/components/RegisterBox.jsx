@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import logo from './upe.jpg';
 import './RegisterBox.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -14,7 +14,6 @@ function RegisterBox() {
   const [email, setEmail] = useState('');
   const [login, setLogin] = useState('');
   const [nome, setNome] = useState('');
-  // const [medico, setMedico] = useState('');
   const navigate = useNavigate();
 
   const enviarDadosParaBackend = async (e) => {
@@ -42,7 +41,6 @@ function RegisterBox() {
   const exibirMensagem = () => {
     if (respostaDoBackend.mensagem === 'Dados recebidos com sucesso!') {
       alert('Cadastro realizado com sucesso!');
-      // window.location.href = '/login'
       navigate('/login');
 
     }

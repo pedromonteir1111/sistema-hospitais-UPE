@@ -28,8 +28,6 @@ function LoginBox() {
 
   const Checar_cadastro = () => {
     if (respostaDoBackend.mensagem === 'Login realizado') {
-      alert('Login realizado com sucesso!');
-      // history.push('/home');
       navigate('/user');
       
     }

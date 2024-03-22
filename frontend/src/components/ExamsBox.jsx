@@ -2,19 +2,18 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './ExamsBox.css';
-import TableUser from './TableUser'; // Importe o componente TableUser
+import TableUser from './TableUser'; 
 
 function ExamsBox() {
     const navigate = useNavigate();
-    const [comandoSair, setComandoSair] = useState('');
-    const [exames, setExames] = useState([]); // Estado para armazenar a lista de exames
+    const [exames, setExames] = useState([]); 
 
     const logout = async () => {
         try {
             const resposta = await axios.post('http://localhost:4000/api/enviar-dados/logout', {
                 mensagem: 'Quero sair',
             });
-            setComandoSair(resposta.data);
+            
             if (resposta.data.mensagem === 'Saia') {
                 navigate('/login');
             }
@@ -32,7 +31,7 @@ function ExamsBox() {
             const resposta = await axios.post('http://localhost:4000/api/enviar-dados/user/exames/listar', {
                 mensagem: 'Me dê os exames desse paciente',
             });
-            setExames(resposta.data.mensagem); // Atualize o estado dos exames com a resposta do backend
+            setExames(resposta.data.mensagem); 
         } catch (erro) {
             console.error('Erro ao enviar dados para o backend:', erro);
         }
@@ -59,7 +58,7 @@ function ExamsBox() {
               <body>
                   <div className="background">
                       <div className="central">
-                          <a href="#" className="logoleft">
+                          <a href="/user" className="logoleft">
                               <i className="logoupe"></i>
                           </a>
                           <ul className="lista">
@@ -75,7 +74,6 @@ function ExamsBox() {
                           <div className="exames-container">
                           <h2 className="exames-title">Lista de Exames</h2>
                           <div className="exames-list">
-                              {/* Renderize o TableUser com a lista de exames */}
                               <TableUser data={exames} />
                           </div>
                       </div>

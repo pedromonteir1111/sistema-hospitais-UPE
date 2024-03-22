@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import logo from "./logo.png"
 import procape from "./procape.jpg"
 import huoc from "./huoc.jpg"
 import cisam from "./cisam.png"
@@ -10,15 +9,13 @@ import DoctorHome from './DoctorHome';
 
 
 function UserBox() {
-    var nome;
     var sair = false;
     var mensagem = 'Quero saber o usuário';
     var mensagem_de_saida;
     const navigate = useNavigate();
 
     var [respostaDoBackend, setRespostaDoBackend] = useState('');
-    // var [comando_sair, setComando_sair] = useState('');
-    // const history = useHistory();
+
     
     useEffect(() => {
         const enviarDadosParaBackend = async () => {
@@ -47,9 +44,7 @@ function UserBox() {
           });
           
           console.log('Enviou')
-        //   setComando_sair(resposta.data);
-      
-          // Coloque o restante do código aqui, se necessário
+
           if (resposta.data.mensagem === 'Saia') {
             navigate('/login');
           }
@@ -60,9 +55,7 @@ function UserBox() {
 
  
     function alternar_estado(sair){
-        // console.log('Função alternar_estado chamada. Antes:', sair);
         sair = !sair;
-        // console.log('Função alternar_estado chamada. Depois:', sair);
         if(sair == true){
             logout();
         }

@@ -39,7 +39,11 @@ function FazerUpload(props) {
         try {
             var resposta_Foienviado = axios.post(url, formData, config);
             console.log("Arquivo enviado com sucesso!!!")
-            // window.location.reload()
+
+            setTimeout(() => {
+                window.location.reload();
+              }, 2000);
+            
            
         
         } catch (error) {

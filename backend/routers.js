@@ -4,8 +4,6 @@ const fs = require('fs');
 const bancodedados = 'banco_de_dados.json';
 const app = express();
 const bodyParser = require('body-parser');
-const { log } = require('console');
-const { PassThrough } = require('stream');
 const path = require('path')
 const multer = require('multer')
 const port = 4000; 
@@ -98,7 +96,7 @@ app.post('/api/enviar-dados/logar', (req, res) => {
           return;
       }
       const Dados_antigos = JSON.parse(dadosAtuais)
-      // const UsuarioExistente = Dados_antigos.usuarios.find(usuarios => usuarios.senha === Login.senha) && Dados_antigos.usuarios.find(usuarios => usuarios.login === Login.login) ;
+      
       
       for(let indice_dos_dados in Dados_antigos.usuarios){
         if(Dados_antigos.usuarios[indice_dos_dados].senha == Login.senha && Dados_antigos.usuarios[indice_dos_dados].login == Login.login){
@@ -112,7 +110,7 @@ app.post('/api/enviar-dados/logar', (req, res) => {
 
           }
           console.log(Dados_antigos.usuarios[indice_dos_dados])
-          console.log(nome)
+          // console.log(nome)
           try{
             nome_inicial = nome.split(" ")[0];
           }
@@ -164,13 +162,14 @@ app.post('/api/enviar-dados/user', (req, res) => {
 
 app.post('/api/enviar-dados/logout', (req, res) => {
   const requisicao = req.body;
-  console.log('Requisição recebida em /api/enviar-dados/logout:', req.body)
+  // console.log('Requisição recebida em /api/enviar-dados/logout:', req.body)
   if(requisicao.mensagem === 'Quero sair'){
     res.json({mensagem: 'Saia'});
     console.log('O usuário pediu pra sair')
     nome = ''
     nome_inicial = ' '
     resposta_de_login.mensagem = ''
+    UsuarioExistente = false
   }
   else{
     res.json({mensagem: 'Não saia'});
@@ -182,16 +181,16 @@ app.post('/api/enviar-dados/logout', (req, res) => {
 const upload = multer({ dest: 'Arquivos_Enviados_Upload/' });
 
 app.post('/api/enviar-dados/uploader', upload.single('file'), (req, res) => {
-  const ID_arquivo = req.file; // Aqui está o arquivo enviado
-  const Nome_arquivo = req.body.fileName; // Caso o arquivo esteja no CORPO de solicitação
+  const ID_arquivo = req.file; 
+  const Nome_arquivo = req.body.fileName; 
 
-  // verificar se o arquivo foi recebido
+  
   if (!ID_arquivo || !Nome_arquivo) {
       console.log('Dados Não recebidos');
       return res.status(400).send('Dados do arquivo ausentes ou inválidos');
   }
 
-  // mover o arquivo para a pasta Arquivos_Enviados_Upload
+  
   const Path_arquivo = path.join(__dirname, 'Arquivos_Enviados_Upload', Nome_arquivo);
 
   fs.rename(ID_arquivo.path, Path_arquivo, (err) => {
@@ -235,7 +234,6 @@ app.post('/api/enviar-dados/uploader', upload.single('file'), (req, res) => {
         }
         const data = JSON.parse(datastr);
         const pacientes = data.usuarios.filter(usuario => !usuario.medico && usuario.nome && lista_ids_dos_pacientes.includes(usuario.p_id))
-        // console.log(pacientes.map((paciente) => {return {name: paciente.nome, text: paciente.cpf}}));
         res.json(pacientes.map((paciente) => {return {name: paciente.nome, text: paciente.cpf,}}));
       })
     }
@@ -258,7 +256,6 @@ app.post('/api/enviar-dados/uploader', upload.single('file'), (req, res) => {
             for (let i in data.usuarios) {
               try{
               if (data.usuarios[i].cpf == requisicao.cpf) {
-                console.log(data.usuarios[i].p_id)
                 if(!data.usuarios[user].pacientes.includes(data.usuarios[i].p_id))
                   data.usuarios[user].pacientes.push(data.usuarios[i].p_id);
           
@@ -280,7 +277,7 @@ app.post('/api/enviar-dados/uploader', upload.single('file'), (req, res) => {
             return;
           }
           console.log('Dados adicionados ao arquivo.');
-          console.log(nome)
+          // console.log(nome)
           res.json({ mensagem: 'Vinculei' });
         });
       });
@@ -301,7 +298,7 @@ app.post('/api/enviar-dados/user/exames/listar', (req, res) => {
      
   const diretorio = './Arquivos_Enviados_Upload';
 
-  // Função para ler o diretório
+  
   fs.readdir(diretorio, (err, files) => {
       if (err) {
           console.error('Erro ao ler o diretório:', err);
@@ -309,11 +306,11 @@ app.post('/api/enviar-dados/user/exames/listar', (req, res) => {
           return;
       }
 
-      // Filtra apenas os arquivos, excluindo subdiretórios
+      
       var apenasArquivos = files.filter(file => fs.statSync(`${diretorio}/${file}`).isFile());
-      console.log(apenasArquivos)
+      // console.log(apenasArquivos)
 
-      // Lê o banco de dados
+      
       fs.readFile(bancodedados, 'utf8', (err, datastr) => {
           if (err) {
               console.error('Erro ao ler o banco de dados', err);
@@ -323,7 +320,7 @@ app.post('/api/enviar-dados/user/exames/listar', (req, res) => {
 
           const data = JSON.parse(datastr);
 
-          // Compara os arquivos com os dados do banco de dados para determinar os exames associados ao usuário
+          
           for (let i = 0; i < apenasArquivos.length; i++) {
               for (let j = 0; j < data.usuarios.length; j++) {
                   if (data.usuarios[j].login === login && apenasArquivos[i].includes(data.usuarios[j].cpf)) {
@@ -332,11 +329,24 @@ app.post('/api/enviar-dados/user/exames/listar', (req, res) => {
               }
           }
 
-          console.log('Arquivos encontrados:', exames_por_usuario);
+          // console.log('Arquivos encontrados:', exames_por_usuario);
           res.json({mensagem: exames_por_usuario})
 
       });
   });
 });
-  // const pacientes = data.usuarios.filter(usuario => !usuario.medico && usuario.nome && lista_ids_dos_pacientes.includes(usuario.p_id))
-        // console.log(pacientes.map((paciente) => {return {name: paciente.nome, text: paciente.cpf}}));
+
+
+app.post('/api/enviar-dados/user/exames/download', (req, res) => {
+    const diretorio = './Arquivos_Enviados_Upload';
+    const caminho = req.body.caminho;
+
+    
+    const arquivoPath = path.join(diretorio, caminho);
+    if (!fs.existsSync(arquivoPath)) {
+        return res.status(404).json({ mensagem: 'Arquivo não encontrado' });
+    }
+
+    
+    res.download(arquivoPath);
+});

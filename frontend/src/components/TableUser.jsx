@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './TableUser.css'; // Importe o arquivo CSS para estilização, se necessário
+import './TableUser.css'; 
 import FazerDownload from "./DownloadBox";
 
 function TableUser(props) {
@@ -22,8 +22,6 @@ function TableUser(props) {
                            <h1>{item}</h1><span>{opened === i ? '-' : '+'}</span>
                        </div>
                        <div className={opened === i ? 'content-show2' : 'content'}>
-                           {/* Adicione aqui o conteúdo adicional que você deseja exibir */}
-                           {/* Por exemplo: <p>Detalhes: {item.details}</p> */}
                            <div className="download">{<FazerDownload lista={item} urlDoArquivo = {".../backend/Arquivos_Enviados_Upload"}/>}</div>
                        </div>
                    </div>

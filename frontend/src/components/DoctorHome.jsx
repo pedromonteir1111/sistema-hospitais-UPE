@@ -58,9 +58,7 @@ function DoctorHome(props) {
           });
           
           console.log('Enviou')
-        //   setComando_sair(resposta.data);
-      
-          // Coloque o restante do código aqui, se necessário
+
           if (resposta.data.mensagem === 'Saia') {
             navigate('/login');
           }
@@ -70,9 +68,7 @@ function DoctorHome(props) {
       };
 
       function alternar_estado(sair){
-        // console.log('Função alternar_estado chamada. Antes:', sair);
         sair = !sair;
-        // console.log('Função alternar_estado chamada. Depois:', sair);
         if(sair == true){
             logout();
         }
